@@ -102,6 +102,7 @@
 #include <linux/uaccess.h>
 #include <linux/kdb.h>
 #include <linux/ctype.h>
+#include <linux/bootsplash.h>
 
 #define MAX_NR_CON_DRIVER 16
 
@@ -3903,6 +3904,7 @@ void do_unblank_screen(int leaving_gfx)
 	}
 
 	console_blanked = 0;
+	bootsplash_mark_dirty();
 	if (vc->vc_sw->con_blank(vc, 0, leaving_gfx) || vt_force_oops_output(vc))
 		/* Low-level driver cannot restore -> do it ourselves */
 		update_screen(vc);

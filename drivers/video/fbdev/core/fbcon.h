@@ -214,6 +214,11 @@ static inline int attr_col_ec(int shift, struct vc_data *vc,
 #define SCROLL_REDRAW	   0x004
 #define SCROLL_PAN_REDRAW  0x005
 
+#ifdef CONFIG_BOOTSPLASH
+extern void fbcon_set_dummyops(struct fbcon_ops *ops);
+#else /* CONFIG_BOOTSPLASH */
+#define fbcon_set_dummyops(x)
+#endif /* CONFIG_BOOTSPLASH */
 #ifdef CONFIG_FB_TILEBLITTING
 extern void fbcon_set_tileops(struct vc_data *vc, struct fb_info *info);
 #endif
